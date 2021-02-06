@@ -14,8 +14,8 @@ import frc.robot.RobotContainer;
 
 public class TeleopDrive extends CommandBase {
 
-  private final DriveTrain m_DriveTrain;
-  private final RobotContainer m_RobotContainer;
+  private DriveTrain m_DriveTrain;
+  private RobotContainer m_RobotContainer;
   private Joystick m_stick;
 
   /**
@@ -41,12 +41,6 @@ public class TeleopDrive extends CommandBase {
     double forward = -1 * m_stick.getY();
     double turn = m_stick.getX();	
     m_DriveTrain.arcadeDrive(forward, turn);
-  }
-
-  public double getZStick(){
-
-    return  m_stick.getZ();
-    
   }
 
   // Called once the command ends or is interrupted.
