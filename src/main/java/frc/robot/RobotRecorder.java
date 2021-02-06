@@ -5,10 +5,8 @@ This class will have an array of hashmaps that store given info about the robot 
 an example of how to use this can be found (link here) 
 this is also used in the CK_23.5 repo found (link here)
 
-TODO:
-realize that hashmaps are serializeable and that the RobotState class existed for no reason
-use the sendable chooser to let drivers choose what file to read from?
-    if not just make the filename an option in constants
+TODO: use the sendable chooser to let drivers choose what file to read from?
+    if not just make the filename an option in constants( current setup)
 
 */
 package frc.robot;
