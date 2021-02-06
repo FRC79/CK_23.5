@@ -11,6 +11,9 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.commands.Drive_Commands.*;
 
+
+
+
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -21,10 +24,14 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
+  private RobotRecorder m_Recorder = new RobotRecorder();
+
   /* drive train */
   private final DriveTrain m_DriveTrain = new DriveTrain();
 
   /* commands */
+  private final PlaybackAuton m_PlaybackAuton = new PlaybackAuton(m_Recorder, m_DriveTrain);
+
   // TODO: this file should have the autonomous stuff
   private TeleopDrive m_TeleopDrive;
 
@@ -68,7 +75,7 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = null;// auton drive when that's a thing
+    m_autonomousCommand = m_PlaybackAuton;
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
