@@ -24,15 +24,14 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
-  private RobotRecorder m_Recorder = new RobotRecorder();
+  private RobotRecorder m_Recorder;
 
   /* drive train */
-  private final DriveTrain m_DriveTrain = new DriveTrain();
+  private DriveTrain m_DriveTrain;
 
   /* commands */
-  private final PlaybackAuton m_PlaybackAuton = new PlaybackAuton(m_Recorder, m_DriveTrain);
+  private PlaybackAuton m_PlaybackAuton;
 
-  // TODO: this file should have the autonomous stuff
   private TeleopDrive m_TeleopDrive;
 
   private Command m_autonomousCommand;
@@ -45,8 +44,11 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+    m_Recorder = new RobotRecorder();
+    m_DriveTrain = new DriveTrain();
+
     m_robotContainer = new RobotContainer();
-    m_TeleopDrive = new TeleopDrive(m_DriveTrain, m_robotContainer);
+
   }
 
   /**
@@ -75,6 +77,7 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
+    m_PlaybackAuton = new PlaybackAuton(m_Recorder, m_DriveTrain);
     m_autonomousCommand = m_PlaybackAuton;
 
     // schedule the autonomous command (example)
@@ -85,7 +88,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    m_Recorder.update();
+  }
 
   @Override
   public void teleopInit() {
@@ -93,6 +98,7 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+    m_TeleopDrive = new TeleopDrive(m_DriveTrain, m_robotContainer);
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
@@ -101,7 +107,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    m_Recorder.update();
+  }
 
   @Override
   public void testInit() {
