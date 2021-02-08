@@ -38,7 +38,7 @@ public class RobotRecorder {
     static final boolean PRINT_DEBUG    = RobotRecorderConstants.PRINT_DEBUG_INFO;
     static final boolean VERBOSE_DEBUG  = RobotRecorderConstants.VERBOSE_DEBUG_PRINT;
     
-    private double startTime; // time recording started (to stop recording once the auton timer is over )
+    private long startTime; // time recording started (to stop recording once the auton timer is over )
     
     // use an arraylist of HashMaps for storing and reading data about the robot
     private ArrayList<HashMap<String, Double>> recordArray;
@@ -50,10 +50,8 @@ public class RobotRecorder {
     /* current ID for the robot's State in the arraylist, for playback */
     private int curUpdateIndex; 
     
-    /* current time for update() (milliseconds) (might make this microseconds) */
-    private double curTime = System.currentTimeMillis(); 
     /* last time update() ran */
-    private double lastUpdate;
+    private long lastUpdate;
 
     // the modes of operation for the robotRecorder
     enum Mode{
@@ -111,7 +109,7 @@ public class RobotRecorder {
 
     public void startRecording(){
         recordArray = new ArrayList<HashMap<String, Double>>();
-        startTime = System.currentTimeMillis()*1000;
+        startTime = System.currentTimeMillis();
         curMode = Mode.RECORD;
 	infoPrint("recording starting", false);
     }
@@ -165,7 +163,7 @@ public class RobotRecorder {
 
     public void update(){
         
-        if( (curTime - lastUpdate) >= UPDATE_FREQ){ // after the given time frequency
+        if( (System.currentTimeMillis() - lastUpdate) >= UPDATE_FREQ){ // after the given time frequency
             if(curMode == Mode.PLAY){ // when playing back info
 
                 if(curUpdateIndex > recordArray.size()){ // stop when out of instructions to follow
@@ -177,7 +175,7 @@ public class RobotRecorder {
                 curState = recordArray.get(curUpdateIndex); // update curState
             }else if(curMode == Mode.RECORD){ // when recording info
 
-                if( System.currentTimeMillis()*1000-startTime > AUTO_LENGTH){ // stop recording when auton recording ends
+                if( System.currentTimeMillis()-startTime > AUTO_LENGTH*1000){ // stop recording when auton recording ends
 			
                     stopRecording();
                     return;
@@ -185,7 +183,7 @@ public class RobotRecorder {
                 recordArray.add(curState); // save current state to record array
                 curState.clear(); // clear state for next go around
             }
-            lastUpdate = curTime; // set lastUpdate to reset the timer 
+            lastUpdate = System.currentTimeMillis(); // set lastUpdate to reset the timer 
         }
     }
 }
