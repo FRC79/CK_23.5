@@ -1,25 +1,21 @@
-/**
-
+/*
 This class will have an array of hashmaps that store given info about the robot and play it back on request
-
 an example of how to use this can be found (link here) 
 this is also used in the CK_23.5 repo found (link here)
-
-TODO: use the sendable chooser to let drivers choose what file to read from?
-    if not just make the filename an option in constants( current setup)
-
+TODO:
+use the sendable chooser to let drivers choose what file to read from?
+    if not just make the filename an option in constants( current solution )
 */
 package frc.robot;
 
 // import constants from constants.java
 import frc.robot.Constants.RobotRecorderConstants;
 
-// use an arraylist of robotStates for storing the data about the robot
+// use an arraylist of hashmaps for storing the data about the robot
 import java.util.ArrayList;
-/* robotState uses HashMap */
 import java.util.HashMap;
 
-/* for saving and retrieving files */
+// for saving and retrieving files 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -38,22 +34,23 @@ public class RobotRecorder {
     static final boolean PRINT_DEBUG    = RobotRecorderConstants.PRINT_DEBUG_INFO;
     static final boolean VERBOSE_DEBUG  = RobotRecorderConstants.VERBOSE_DEBUG_PRINT;
     
-    private long startTime; // time recording started (to stop recording once the auton timer is over )
+    // time recording started (to stop recording once the auton timer is over ) 
+    private double startTime; 
     
-    // use an arraylist of HashMaps for storing and reading data about the robot
+    // use an arraylist of HashMaps for storing and reading data about the robot 
     private ArrayList<HashMap<String, Double>> recordArray;
 
-    // HashMap that hold info about the robot in a single moment
-    // gets saved and cleared every update()
+    /* HashMap that holds info about the robot in a single moment.
+     gets saved and cleared every update() */
     private HashMap<String, Double> curState;
 
-    /* current ID for the robot's State in the arraylist, for playback */
+    // current ID for the robot's State in the arraylist, for playback 
     private int curUpdateIndex; 
     
-    /* last time update() ran */
-    private long lastUpdate;
+    // last time update() ran 
+    private double lastUpdate;
 
-    // the modes of operation for the robotRecorder
+    // the modes of operation for the robotRecorder 
     enum Mode{
         PLAY,
         RECORD,
@@ -63,8 +60,9 @@ public class RobotRecorder {
 	
 	
     // methods for saing and retrieving recordArray to/from files
+	
     private void saveRecordArray(String fileName){
-        File outFile =  new File(fileName+FILE_EXT); // make a new file
+        File outFile =  new File(FILE_PATH+fileName+FILE_EXT); // make a new file
 	try { // attempt to save the array to the file
 		FileOutputStream fs = new FileOutputStream(outFile);
 		ObjectOutputStream os = new ObjectOutputStream(fs);
@@ -77,9 +75,9 @@ public class RobotRecorder {
     
     private void loadRecordArray(String fileName){
         try {
-		FileInputStream fs = new FileInputStream(fileName); // try to find file by name
+		FileInputStream fs = new FileInputStream(FILE_PATH+fileName+FILE_EXT); // try to find file by name
 		ObjectInputStream os = new ObjectInputStream(fs);
-		
+				
 		recordArray = (ArrayList<HashMap<String, Double>>) os.readObject(); // cast the data to an array of HashMaps and then assign it to recordArray
 				
 		os.close();
@@ -93,7 +91,8 @@ public class RobotRecorder {
 	}
     }
     
-    // methods for starting and stopping the recorder's different opporations    
+    // methods for starting and stopping the recorder's different opporations   
+	
     public void startPlayback(){
         curMode = Mode.PLAY;
         curUpdateIndex = 0;
@@ -109,7 +108,7 @@ public class RobotRecorder {
 
     public void startRecording(){
         recordArray = new ArrayList<HashMap<String, Double>>();
-        startTime = System.currentTimeMillis();
+        startTime = System.currentTimeMillis()*1000;
         curMode = Mode.RECORD;
 	infoPrint("recording starting", false);
     }
@@ -175,7 +174,7 @@ public class RobotRecorder {
                 curState = recordArray.get(curUpdateIndex); // update curState
             }else if(curMode == Mode.RECORD){ // when recording info
 
-                if( System.currentTimeMillis()-startTime > AUTO_LENGTH*1000){ // stop recording when auton recording ends
+                if( System.currentTimeMillis()*1000-startTime > AUTO_LENGTH){ // stop recording when auton recording ends
 			
                     stopRecording();
                     return;
