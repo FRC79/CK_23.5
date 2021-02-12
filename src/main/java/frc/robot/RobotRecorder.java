@@ -27,7 +27,7 @@ public class RobotRecorder {
 
     // import constants from constants.java
     static final double  UPDATE_FREQ    = RobotRecorderConstants.RECORDING_FREQUENCY;
-    static final double  AUTO_LENGTH    = RobotRecorderConstants.AUTONOMOUS_DURATION; 
+    static final double  RECORD_LENGTH  = RobotRecorderConstants.RECORDING_DURATION; 
     static final String  FILE_EXT       = RobotRecorderConstants.SAVE_FILE_EXTENSION;
     static final String  FILE_PATH      = RobotRecorderConstants.SAVE_FILE_PATH;
     static final String  FILE_NAME      = RobotRecorderConstants.SAVE_FILE_NAME;
@@ -175,7 +175,7 @@ public class RobotRecorder {
                 curState = recordArray.get(curUpdateIndex); // update curState
             }else if(curMode == Mode.RECORD){ // when recording info
 		infoPrint("record", true);
-                if(System.currentTimeMillis()*0.001-startTime > AUTO_LENGTH*1000){ // stop recording when auton recording ends
+                if(System.currentTimeMillis()-startTime > RECORD_LENGTH*1000){ // stop recording when auton recording ends
                     infoPrint("start Log", true);
 		    infoPrint(String.valueOf(System.currentTimeMillis()), false);
                     infoPrint(String.valueOf(startTime), false);
