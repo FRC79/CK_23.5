@@ -42,7 +42,7 @@ public class RobotRecorder {
 
     /* HashMap that holds info about the robot in a single moment.
      gets saved and cleared every update() */
-    private HashMap<String, Double> curState;
+    private HashMap<String, Double> curState = new HashMap<String, Double>();
 
     // current ID for the robot's State in the arraylist, for playback 
     private int curUpdateIndex; 
@@ -163,6 +163,7 @@ public class RobotRecorder {
     public void update(){
         
         if( (System.currentTimeMillis() - lastUpdate) >= UPDATE_FREQ){ // after the given time frequency
+            infoPrint("lol", false);
             if(curMode == Mode.PLAY){ // when playing back info
 
                 if(curUpdateIndex > recordArray.size()){ // stop when out of instructions to follow
@@ -174,8 +175,9 @@ public class RobotRecorder {
                 curState = recordArray.get(curUpdateIndex); // update curState
             }else if(curMode == Mode.RECORD){ // when recording info
 
-                if( System.currentTimeMillis()-startTime > AUTO_LENGTH*1000){ // stop recording when auton recording ends
-			
+                if(System.currentTimeMillis()*0.001-startTime > AUTO_LENGTH*1000){ // stop recording when auton recording ends
+                    infoPrint(String.valueOf(System.currentTimeMillis()), false);
+                    infoPrint(String.valueOf(startTime), false);
                     stopRecording();
                     return;
                 }

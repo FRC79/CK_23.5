@@ -30,8 +30,8 @@ public final class Constants {
 
         /* motors */
         // currently set up for CK23 ports 
-        public static final int LEFT_MOTOR1_PORT    = 7;  // victor
-        public static final int LEFT_MOTOR2_PORT    = 1;  // talon
+        public static final int LEFT_MOTOR1_PORT    = 1;  // victor
+        public static final int LEFT_MOTOR2_PORT    = 7;  // talon
         
         public static final int RIGHT_MOTOR1_PORT   = 13; // talon
         public static final int RIGHT_MOTOR2_PORT   = 8;  // victor
