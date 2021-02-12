@@ -161,11 +161,11 @@ public class RobotRecorder {
     }
 
     public void update(){
-        
+        infoPrint("update()", true);
         if( (System.currentTimeMillis() - lastUpdate) >= UPDATE_FREQ){ // after the given time frequency
-            infoPrint("lol", false);
+            infoPrint("update Time", true);
             if(curMode == Mode.PLAY){ // when playing back info
-
+		infoPrint("playback", true);
                 if(curUpdateIndex > recordArray.size()){ // stop when out of instructions to follow
 
                     stopPlaying();
@@ -174,9 +174,10 @@ public class RobotRecorder {
                 curUpdateIndex++;   // update index for save array on next go around
                 curState = recordArray.get(curUpdateIndex); // update curState
             }else if(curMode == Mode.RECORD){ // when recording info
-
+		infoPrint("record", true);
                 if(System.currentTimeMillis()*0.001-startTime > AUTO_LENGTH*1000){ // stop recording when auton recording ends
-                    infoPrint(String.valueOf(System.currentTimeMillis()), false);
+                    infoPrint("start Log", true);
+		    infoPrint(String.valueOf(System.currentTimeMillis()), false);
                     infoPrint(String.valueOf(startTime), false);
                     stopRecording();
                     return;
