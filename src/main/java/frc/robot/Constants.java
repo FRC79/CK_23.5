@@ -17,12 +17,11 @@ public final class Constants {
     public static final class DriveConstants {
 
         /* motors */
-        // currently set up for CK23 ports 
-        public static final int LEFT_MOTOR1_PORT    = 7;  // victor
-        public static final int LEFT_MOTOR2_PORT    = 1;  // talon
+        public static final int LEFT_MOTOR1_PORT    = 1;
+        public static final int LEFT_MOTOR2_PORT    = 7;
         
-        public static final int RIGHT_MOTOR1_PORT   = 13; // talon
-        public static final int RIGHT_MOTOR2_PORT   = 8;  // victor
+        public static final int RIGHT_MOTOR1_PORT   = 13;
+        public static final int RIGHT_MOTOR2_PORT   = 8;
 
         /* encoders */
         public static final int RIGHT_ENCODER_PORT_A        = 0;     // port for a channel of right encoder
