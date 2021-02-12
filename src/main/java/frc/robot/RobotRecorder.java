@@ -174,7 +174,7 @@ public class RobotRecorder {
                 curState = recordArray.get(curUpdateIndex); // update curState
             }else if(curMode == Mode.RECORD){ // when recording info
 
-                if( System.currentTimeMillis()*1000-startTime > AUTO_LENGTH){ // stop recording when auton recording ends
+                if( System.currentTimeMillis()-startTime > AUTO_LENGTH*1000){ // stop recording when auton recording ends
 			
                     stopRecording();
                     return;
