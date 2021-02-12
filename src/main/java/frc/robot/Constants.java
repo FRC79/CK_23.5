@@ -29,7 +29,6 @@ public final class Constants {
     public static final class DriveConstants {
 
         /* motors */
-        // currently set up for CK23 ports 
         public static final int LEFT_MOTOR1_PORT    = 1;  // victor
         public static final int LEFT_MOTOR2_PORT    = 7;  // talon
         
