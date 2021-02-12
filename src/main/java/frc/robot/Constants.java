@@ -13,14 +13,30 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+  
+    public static final class DriveConstants {
 
-    public final class EncoderConstants{
-        public static final int RIGHT_ENCODER_PORT_A        = 0;
-        public static final int RIGHT_ENCODER_PORT_B        = 1;
-        public static final boolean RIGHT_ENCODER_REVERSE   = false;
+        /* motors */
+        public static final int LEFT_MOTOR1_PORT    = 1;
+        public static final int LEFT_MOTOR2_PORT    = 7;
+        
+        public static final int RIGHT_MOTOR1_PORT   = 13;
+        public static final int RIGHT_MOTOR2_PORT   = 8;
 
-        public static final int LEFT_ENCODER_PORT_A         = 2;
-        public static final int LEFT_ENCODER_PORT_B         = 3;
-        public static final boolean LEFT_ENCODER_REVERSE    = false;
+        /* encoders */
+        public static final int RIGHT_ENCODER_PORT_A        = 0;     // port for a channel of right encoder
+        public static final int RIGHT_ENCODER_PORT_B        = 1;     // port for a channel of right encoder
+        public static final boolean RIGHT_ENCODER_REVERSE   = true;  // port for a channel of right encoder
+
+        public static final int LEFT_ENCODER_PORT_A         = 2;     // port for a channel of right encoder
+        public static final int LEFT_ENCODER_PORT_B         = 3;     // port for a channel of right encoder
+        public static final boolean LEFT_ENCODER_REVERSE    = false; // port for a channel of right encoder
+    }    
+
+
+    public static final class OIConstants {
+      /* joysticks */
+      public static final int DRIVER    = 0; // driver joystick port (usb) on laptop (changeable w/ oi in driver station)
+      public static final int OPERATOR  = 1; // driver joystick port (usb) on laptop (changeable w/ oi in driver station)
     }
 }
