@@ -30,8 +30,8 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 public class DriveTrain extends SubsystemBase {
 
   /* left motors */
-  private final TalonSRX frontLeftMotor = new TalonSRX(DriveConstants.LEFT_MOTOR1_PORT);
-  private final VictorSPX backLeftMotor = new VictorSPX(DriveConstants.LEFT_MOTOR2_PORT);
+  private final VictorSPX frontLeftMotor = new VictorSPX(DriveConstants.LEFT_MOTOR1_PORT);
+  private final TalonSRX backLeftMotor = new TalonSRX(DriveConstants.LEFT_MOTOR2_PORT);
 
   /* right motors */
   private final TalonSRX frontRightMotor = new TalonSRX(DriveConstants.RIGHT_MOTOR1_PORT);
