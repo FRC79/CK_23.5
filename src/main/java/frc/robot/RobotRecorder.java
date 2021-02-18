@@ -64,10 +64,12 @@ public class RobotRecorder {
     private void saveRecordArray(String fileName){
         File outFile =  new File(FILE_PATH+fileName+FILE_EXT); // make a new file
 	try { // attempt to save the array to the file
+        boolean fileSuccess = outFile.createNewFile();
 		FileOutputStream fs = new FileOutputStream(outFile);
 		ObjectOutputStream os = new ObjectOutputStream(fs);
 		os.writeObject(recordArray);
 		os.close();
+        infoPrint("file made: "+fileSuccess, false);
 	} catch (Exception e) { // in the case the file cannot be written to
 		e.printStackTrace();
 	}
@@ -108,7 +110,7 @@ public class RobotRecorder {
 
     public void startRecording(){
         recordArray = new ArrayList<HashMap<String, Double>>();
-        startTime = System.currentTimeMillis()*1000;
+        startTime = System.currentTimeMillis();
         curMode = Mode.RECORD;
 	infoPrint("recording starting", false);
     }
@@ -163,7 +165,7 @@ public class RobotRecorder {
     public void update(){
         
         if( (System.currentTimeMillis() - lastUpdate) >= UPDATE_FREQ){ // after the given time frequency
-            infoPrint("lol", false);
+            //infoPrint("lol", false);
             if(curMode == Mode.PLAY){ // when playing back info
 
                 if(curUpdateIndex > recordArray.size()){ // stop when out of instructions to follow
@@ -174,10 +176,12 @@ public class RobotRecorder {
                 curUpdateIndex++;   // update index for save array on next go around
                 curState = recordArray.get(curUpdateIndex); // update curState
             }else if(curMode == Mode.RECORD){ // when recording info
-
-                if(System.currentTimeMillis()*0.001-startTime > AUTO_LENGTH*1000){ // stop recording when auton recording ends
-                    infoPrint(String.valueOf(System.currentTimeMillis()), false);
-                    infoPrint(String.valueOf(startTime), false);
+                //infoPrint(String.valueOf(System.currentTimeMillis()*1e-12-startTime*1e-12), false);
+                if(true){//System.currentTimeMillis()*1e-12-startTime*1e-12 > AUTO_LENGTH*1000){ // stop recording when auton recording ends
+                    infoPrint(String.valueOf(System.currentTimeMillis()*1e-12), false);
+                    infoPrint(String.valueOf(startTime*1e-12), false);
+                    infoPrint(String.valueOf(AUTO_LENGTH*1000), false);
+                    infoPrint(String.valueOf(System.currentTimeMillis()*1e-12-startTime*1e-12), false);
                     stopRecording();
                     return;
                 }
