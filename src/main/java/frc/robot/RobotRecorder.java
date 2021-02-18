@@ -27,7 +27,7 @@ public class RobotRecorder {
 
     // import constants from constants.java
     static final double  UPDATE_FREQ    = RobotRecorderConstants.RECORDING_FREQUENCY;
-    static final double  AUTO_LENGTH    = RobotRecorderConstants.AUTONOMOUS_DURATION; 
+    static final double  RECORD_LENGTH  = RobotRecorderConstants.RECORDING_DURATION; 
     static final String  FILE_EXT       = RobotRecorderConstants.SAVE_FILE_EXTENSION;
     static final String  FILE_PATH      = RobotRecorderConstants.SAVE_FILE_PATH;
     static final String  FILE_NAME      = RobotRecorderConstants.SAVE_FILE_NAME;
@@ -163,11 +163,10 @@ public class RobotRecorder {
     }
 
     public void update(){
-        
+        infoPrint("update()", true);
         if( (System.currentTimeMillis() - lastUpdate) >= UPDATE_FREQ){ // after the given time frequency
-            //infoPrint("lol", false);
             if(curMode == Mode.PLAY){ // when playing back info
-
+		infoPrint("playback", true);
                 if(curUpdateIndex > recordArray.size()){ // stop when out of instructions to follow
 
                     stopPlaying();
@@ -180,7 +179,7 @@ public class RobotRecorder {
                 if(true){//System.currentTimeMillis()*1e-12-startTime*1e-12 > AUTO_LENGTH*1000){ // stop recording when auton recording ends
                     infoPrint(String.valueOf(System.currentTimeMillis()*1e-12), false);
                     infoPrint(String.valueOf(startTime*1e-12), false);
-                    infoPrint(String.valueOf(AUTO_LENGTH*1000), false);
+                    infoPrint(String.valueOf(RECORD_LENGTH*1000), false);
                     infoPrint(String.valueOf(System.currentTimeMillis()*1e-12-startTime*1e-12), false);
                     stopRecording();
                     return;
