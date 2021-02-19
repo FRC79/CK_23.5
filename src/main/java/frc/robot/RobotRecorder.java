@@ -167,6 +167,7 @@ public class RobotRecorder {
         if( (System.currentTimeMillis() - lastUpdate) >= UPDATE_FREQ){ // after the given time frequency
             if(curMode == Mode.PLAY){ // when playing back info
 		    infoPrint(String.valueOf(curUpdateIndex),true);
+            infoPrint(String.valueOf(curState),true);
                 if(curUpdateIndex >= recordArray.size()){ // stop when out of instructions to follow
 
                     stopPlaying();
@@ -181,7 +182,7 @@ public class RobotRecorder {
                     return;
                 }
                 recordArray.add(curState); // save current state to record array
-                curState.clear(); // clear state for next go around
+                //curState.clear(); // clear state for next go around
             }
             lastUpdate = System.currentTimeMillis(); // set lastUpdate to reset the timer 
         }
