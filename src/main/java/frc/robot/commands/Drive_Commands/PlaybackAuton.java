@@ -35,11 +35,14 @@ public class PlaybackAuton extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if(m_Recorder.getRobotData("joyX") == null || m_Recorder.getRobotData("joyY") == null ){
+      return;
+    }
     // get values from the recording
     joyX = m_Recorder.getRobotData("joyX");
     joyY = m_Recorder.getRobotData("joyY");
     // place to adjust values
-    double forward = -1 * joyX;
+    double forward = joyX;
     double turn = joyY;	
     // drive train 
     m_DriveTrain.arcadeDrive(forward, turn);
@@ -48,13 +51,13 @@ public class PlaybackAuton extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-
+    m_DriveTrain.arcadeDrive(0, 0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     // TODO: make this command end if safety values don't line up or something
-    return false;
+    return (m_Recorder.getRobotData("joyX") == null || m_Recorder.getRobotData("joyY") == null);
   }
 }
