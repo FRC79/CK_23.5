@@ -41,6 +41,7 @@ public class PlaybackAuton extends CommandBase {
     // get values from the recording
     joyX = m_Recorder.getRobotData("joyX");
     joyY = m_Recorder.getRobotData("joyY");
+    //System.out.println(String.valueOf(joyX));
     // place to adjust values
     double forward = joyX;
     double turn = joyY;	
