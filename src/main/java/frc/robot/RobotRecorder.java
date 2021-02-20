@@ -97,7 +97,7 @@ public class RobotRecorder {
 	
     public void startPlayback(){
         curMode = Mode.PLAY;
-        curUpdateIndex = 0;
+        curUpdateIndex = 1; // start at 1, not zero, first vale in array in null
 	    infoPrint("playback starting", false);
         // grab recordArray from a file
         loadRecordArray(FILE_NAME);
@@ -139,7 +139,6 @@ public class RobotRecorder {
      */
     public Double getRobotData(String Key){
         if(curMode == Mode.PLAY){
-            //infoPrint(String.valueOf(curState.get(Key)), false);
             return curState.get(Key);
         }
         return (Double) null;
@@ -152,7 +151,6 @@ public class RobotRecorder {
     */
     private void infoPrint(String text, boolean verbose){   
         if(!PRINT_DEBUG){ return; } // if printing is turned off then stop right here
-        
         if(verbose){
             if(VERBOSE_DEBUG){
                 System.out.println(text); // print verbose messages of allowed
@@ -166,8 +164,8 @@ public class RobotRecorder {
     public void update(){
         if( (System.currentTimeMillis() - lastUpdate) >= UPDATE_FREQ){ // after the given time frequency
             if(curMode == Mode.PLAY){ // when playing back info
-                infoPrint(String.valueOf(recordArray), false);
-                if(true){//curUpdateIndex >= recordArray.size()){ // stop when out of instructions to follow
+                //infoPrint(String.valueOf(recordArray), false);
+                if(curUpdateIndex >= recordArray.size()){ // stop when out of instructions to follow
                     stopPlaying();
                     return;
                 }
