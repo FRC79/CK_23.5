@@ -100,13 +100,13 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    //m_TeleopDrive = new TeleopDrive(m_DriveTrain, m_robotContainer); 
-    m_recordDrive = new TestRecordDrive(m_Recorder,m_DriveTrain, m_robotContainer);
+    m_TeleopDrive = new TeleopDrive(m_DriveTrain, m_robotContainer); 
+    //m_recordDrive = new TestRecordDrive(m_Recorder,m_DriveTrain, m_robotContainer);
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    //m_TeleopDrive.schedule();
-    m_recordDrive.schedule();
+    m_TeleopDrive.schedule();
+    //m_recordDrive.schedule();
   }
 
   /** This function is called periodically during operator control. */

@@ -43,8 +43,8 @@ public class PlaybackAuton extends CommandBase {
     joyY = m_Recorder.getRobotData("joyY");
     //System.out.println(String.valueOf(joyX));
     // place to adjust values
-    double forward = joyX;
-    double turn = joyY;	
+    double forward = -1 * joyY;
+    double turn = joyX;	
     // drive train 
     m_DriveTrain.arcadeDrive(forward, turn);
   }

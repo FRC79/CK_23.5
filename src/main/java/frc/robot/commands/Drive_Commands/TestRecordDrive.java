@@ -45,7 +45,7 @@ public class TestRecordDrive extends CommandBase {
     //record the values
 
     m_Recorder.setRobotData("joyX",  m_stick.getX());
-    m_Recorder.setRobotData("joyY",  m_stick.getY());
+    m_Recorder.setRobotData("joyY", m_stick.getY());
   }
 
   // Called once the command ends or is interrupted.
