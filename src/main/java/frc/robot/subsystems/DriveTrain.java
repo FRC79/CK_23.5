@@ -39,7 +39,7 @@ public class DriveTrain extends SubsystemBase {
 
   /* encoders */
   private final Encoder rightEncoder = new Encoder(DriveConstants.LEFT_ENCODER_PORT_A,DriveConstants.LEFT_ENCODER_PORT_B,DriveConstants.LEFT_ENCODER_REVERSE);
-  private final Encoder leftEncoder  = new Encoder(DriveConstants.LEFT_ENCODER_PORT_A,DriveConstants.LEFT_ENCODER_PORT_B,DriveConstants.LEFT_ENCODER_REVERSE);
+  private final Encoder leftEncoder  = new Encoder(DriveConstants.RIGHT_ENCODER_PORT_A,DriveConstants.RIGHT_ENCODER_PORT_B,DriveConstants.RIGHT_ENCODER_REVERSE);
 
   /* gyro */
   private final AHRS gyro = new AHRS(SPI.Port.kMXP); ;
@@ -68,11 +68,11 @@ public class DriveTrain extends SubsystemBase {
     double turn = Deadband(rot);
 
 		/* Arcade Drive using PercentOutput along with Arbitrary Feed Forward supplied by turn */
-    frontLeftMotor.set(ControlMode.PercentOutput, forward, DemandType.ArbitraryFeedForward, turn);
+    frontLeftMotor.set(ControlMode.PercentOutput, -forward, DemandType.ArbitraryFeedForward, -turn);
     backLeftMotor.set(ControlMode.PercentOutput, forward, DemandType.ArbitraryFeedForward, turn);
     
     frontRightMotor.set(ControlMode.PercentOutput, -forward, DemandType.ArbitraryFeedForward, turn);
-    backRightMotor.set(ControlMode.PercentOutput, -forward, DemandType.ArbitraryFeedForward, turn);
+    backRightMotor.set(ControlMode.PercentOutput, forward, DemandType.ArbitraryFeedForward, -turn);
   }
 
   // eliminates small inperfections in the driveStick's resting position

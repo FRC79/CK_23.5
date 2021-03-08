@@ -11,6 +11,9 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.commands.Drive_Commands.*;
 
+
+
+
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -21,12 +24,17 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
+  private RobotRecorder m_Recorder;
+
   /* drive train */
-  private final DriveTrain m_DriveTrain = new DriveTrain();
+  private DriveTrain m_DriveTrain;
 
   /* commands */
-  // TODO: this file should have the autonomous stuff
+  private PlaybackAuton m_PlaybackAuton;
+
   private TeleopDrive m_TeleopDrive;
+
+  private TestRecordDrive m_recordDrive;
 
   private Command m_autonomousCommand;
 
@@ -38,8 +46,11 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+    m_Recorder = new RobotRecorder();
+    m_DriveTrain = new DriveTrain();
+
     m_robotContainer = new RobotContainer();
-    m_TeleopDrive = new TeleopDrive(m_DriveTrain, m_robotContainer);
+
   }
 
   /**
@@ -68,7 +79,8 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = null;// auton drive when that's a thing
+    m_PlaybackAuton = new PlaybackAuton(m_Recorder, m_DriveTrain);
+    m_autonomousCommand = m_PlaybackAuton;
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
@@ -78,7 +90,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    m_Recorder.update();
+  }
 
   @Override
   public void teleopInit() {
@@ -86,15 +100,20 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+    m_TeleopDrive = new TeleopDrive(m_DriveTrain, m_robotContainer); 
+    //m_recordDrive = new TestRecordDrive(m_Recorder,m_DriveTrain, m_robotContainer);
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
     m_TeleopDrive.schedule();
+    //m_recordDrive.schedule();
   }
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    m_Recorder.update();
+  }
 
   @Override
   public void testInit() {

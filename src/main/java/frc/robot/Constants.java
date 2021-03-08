@@ -13,6 +13,17 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+
+  public static final class RobotRecorderConstants{
+    
+    public static final double  UPDATE_FREQUENCY      = 15;     // miliseconds (maybe change to microseconds)
+    public static final double  RECORDING_DURATION    = 10;      // seconds, length of the recording timer
+    public static final String  SAVE_FILE_EXTENSION   = ".lmao";// extension for files that robotArrays are saved in
+    public static final String  SAVE_FILE_PATH        = "/home/lvuser/";// path on the roborio to keep robotArray files( thanks for ruining the cool looking code )
+    public static final String  SAVE_FILE_NAME        = "testV12"; // name of the file to make or read
+    public static final boolean PRINT_DEBUG_INFO      = true;   // true to print info about the recoring and playback
+    public static final boolean VERBOSE_DEBUG_PRINT   = true;   // true to print a lot of in depth info about recording and playback
+  }
   
     public static final class DriveConstants {
 
@@ -21,16 +32,16 @@ public final class Constants {
         public static final int LEFT_MOTOR2_PORT    = 7;
         
         public static final int RIGHT_MOTOR1_PORT   = 13;
-        public static final int RIGHT_MOTOR2_PORT   = 8;
+        public static final int RIGHT_MOTOR2_PORT   = 8; 
 
         /* encoders */
-        public static final int RIGHT_ENCODER_PORT_A        = 0;     // port for a channel of right encoder
-        public static final int RIGHT_ENCODER_PORT_B        = 1;     // port for a channel of right encoder
-        public static final boolean RIGHT_ENCODER_REVERSE   = true;  // port for a channel of right encoder
+        public static final int RIGHT_ENCODER_PORT_A        = 0;     // port for the A channel of right encoder
+        public static final int RIGHT_ENCODER_PORT_B        = 1;     // port for the B channel of right encoder
+        public static final boolean RIGHT_ENCODER_REVERSE   = true;  // is the right encoder reversed?
 
-        public static final int LEFT_ENCODER_PORT_A         = 2;     // port for a channel of right encoder
-        public static final int LEFT_ENCODER_PORT_B         = 3;     // port for a channel of right encoder
-        public static final boolean LEFT_ENCODER_REVERSE    = false; // port for a channel of right encoder
+        public static final int LEFT_ENCODER_PORT_A         = 2;     // port for the A channel of left encoder
+        public static final int LEFT_ENCODER_PORT_B         = 3;     // port for the B channel of leff encoder
+        public static final boolean LEFT_ENCODER_REVERSE    = false; // is the left encoder reversed?
     }    
 
 
