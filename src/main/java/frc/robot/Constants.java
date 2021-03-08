@@ -14,7 +14,6 @@ package frc.robot;
  */
 public final class Constants {
 
-
   public static final class RobotRecorderConstants{
     
     public static final double  UPDATE_FREQUENCY      = 15;     // miliseconds (maybe change to microseconds)
@@ -25,7 +24,7 @@ public final class Constants {
     public static final boolean PRINT_DEBUG_INFO      = true;   // true to print info about the recoring and playback
     public static final boolean VERBOSE_DEBUG_PRINT   = true;   // true to print a lot of in depth info about recording and playback
   }
-
+  
     public static final class DriveConstants {
 
         /* motors */
@@ -50,7 +49,5 @@ public final class Constants {
       /* joysticks */
       public static final int DRIVER    = 0; // driver joystick port (usb) on laptop (changeable w/ oi in driver station)
       public static final int OPERATOR  = 1; // driver joystick port (usb) on laptop (changeable w/ oi in driver station)
-
     }
-
 }
