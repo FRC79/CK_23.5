@@ -10,7 +10,7 @@ import frc.robot.RobotContainer;
 import frc.robot.RobotRecorder;
 import frc.robot.subsystems.DriveTrain;
 
-public class TestRecordDrive extends CommandBase {
+public class RecordDrive extends CommandBase {
 
   private RobotRecorder m_Recorder;
   private DriveTrain m_DriveTrain;
@@ -18,8 +18,8 @@ public class TestRecordDrive extends CommandBase {
 
   private Joystick m_stick;
 
-  /** Creates a new TestRecordDrive. */
-  public TestRecordDrive(RobotRecorder _rRecorder, DriveTrain _dTrain, RobotContainer roboContainer) {
+  /** Creates a new RecordDrive. */
+  public RecordDrive(RobotRecorder _rRecorder, DriveTrain _dTrain, RobotContainer roboContainer) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_Recorder = _rRecorder;
     m_DriveTrain = _dTrain;
