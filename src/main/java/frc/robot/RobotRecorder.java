@@ -28,7 +28,7 @@ public class RobotRecorder {
 
     // import constants from constants.java
     static final double  UPDATE_FREQ    	= RobotRecorderConstants.UPDATE_FREQUENCY;
-    static final double  RECORD_LENGTH  	= RobotRecorderConstants.RECORDING_DURATION; 
+    static final double  RECORD_LENGTH  	= RobotRecorderConstants.AUTONOMOUS_DURATION; 
     static final String  FILE_EXT       	= RobotRecorderConstants.SAVE_FILE_EXTENSION;
     static final String  FILE_PATH      	= RobotRecorderConstants.SAVE_FILE_PATH;
     static final String  FILE_NAME      	= RobotRecorderConstants.SAVE_FILE_NAME;
@@ -62,8 +62,8 @@ public class RobotRecorder {
     private Mode curMode = Mode.NORMAL;
 	
     // method for getting names of all robot recording files	
-    public array getAllRoboFiles(){
-		file dir = new file(FILE_PATH);
+    public String[] getAllRoboFiles(){
+		File dir = new File(FILE_PATH);
 		FilenameFilter filter = new FilenameFilter() {
         	@Override
         	public boolean accept(File f, String name) {
