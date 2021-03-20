@@ -93,7 +93,8 @@ public class RobotRecorder {
         try {
 		FileInputStream fs = new FileInputStream(FILE_PATH+fileName+FILE_EXT); // try to find file by name
 		ObjectInputStream os = new ObjectInputStream(fs);
-				
+            
+        recordArray = new ArrayList<HashMap<String, Double>>(); // make new instance of roboArray to avoid pointer problems (tenative) 
 		recordArray = (ArrayList<HashMap<String, Double>>) os.readObject(); // cast the data to an array of HashMaps and then assign it to recordArray
 				
 		os.close();
