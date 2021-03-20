@@ -35,7 +35,7 @@ public class RobotRecorder {
     static final boolean PRINT_DEBUG    	= RobotRecorderConstants.PRINT_DEBUG_INFO;
     static final boolean VERBOSE_DEBUG  	= RobotRecorderConstants.VERBOSE_DEBUG_PRINT;
     static final boolean SHOULD_RECORD 		= RobotRecorderConstants.SHOULD_RECORD;
-    static final boolean INTERPOLATE_VALUES 	= RobotRecorderConstants.INTERPOLATE_VALUES;
+    static final boolean INTERPOLATE_VALUES = RobotRecorderConstants.INTERPOLATE_VALUES;
 	    
     // time recording started (to stop recording once the auton timer is over ) 
     private double startTime; 
