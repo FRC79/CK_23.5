@@ -5,16 +5,16 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
+import frc.robot.commands.Drive_Commands.PlaybackAuton;
+import frc.robot.commands.Drive_Commands.RecordDrive;
+import frc.robot.commands.Drive_Commands.TeleopDrive;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.commands.Drive_Commands.*;
 
-
-
-
-/**
+/** 
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
  * the package after creating this project, you must also update the build.gradle file in the
@@ -25,6 +25,10 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
 
   private RobotRecorder m_Recorder;
+
+  private SendableChooser<String> fileChooser;
+
+  private SendableChooser<Boolean> recordOptionChooser;
 
   /* drive train */
   private DriveTrain m_DriveTrain;
@@ -46,10 +50,27 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+
     m_Recorder = new RobotRecorder();
     m_DriveTrain = new DriveTrain();
 
     m_robotContainer = new RobotContainer();
+
+    // sendable chooser stuff
+
+    // add a drop-down of all the robot recording files to be selected from
+    String[] roboFiles = m_Recorder.getAllRoboFiles();
+    fileChooser = new SendableChooser<>();
+    fileChooser.setDefaultOption("no file/make new file", "newFile"); // add an option for making a new file
+    for(int i = 0; i < roboFiles.length; i++ ){
+      fileChooser.addOption(roboFiles[i], roboFiles[i]);
+    }
+
+    // add a dropdown for the option to record
+    recordOptionChooser = new SendableChooser<>();
+    recordOptionChooser.addOption("Recorded Teleop", true);
+    recordOptionChooser.setDefaultOption("Teleop", false);
+    
 
   }
 
@@ -103,10 +124,14 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    m_TeleopDrive = new TeleopDrive(m_DriveTrain, m_robotContainer); 
-    //m_recordDrive = new RecordDrive(m_Recorder,m_DriveTrain, m_robotContainer);
-    m_TeleopDrive.schedule();
-    //m_recordDrive.schedule();
+    
+    if(recordOptionChooser.getSelected()){
+      m_recordDrive = new RecordDrive(m_Recorder,m_DriveTrain, m_robotContainer);
+      m_recordDrive.schedule();
+    }else{
+      m_TeleopDrive = new TeleopDrive(m_DriveTrain, m_robotContainer); 
+      m_TeleopDrive.schedule();
+    }
   }
 
   /** This function is called periodically during operator control. */
