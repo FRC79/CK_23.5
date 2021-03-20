@@ -161,7 +161,7 @@ public class RobotRecorder {
 			Double dataAge = System.currentTimeMillis() - lastUpdate; // how old the curent info is
 			Double fraction = dataAge/UPDATE_FREQ; // the data's age / how long it will live = % till the data is refreshed
 			/* value1 + fraction * (value2 - value1) = mix of current and next value according to fraction */
-			Double lerpData = curState.get(Key) + fraction * (recordArray.get(curUpdateIndex+1).get(key) - curState.get(Key));
+			Double lerpData = curState.get(Key) + fraction * (recordArray.get(curUpdateIndex+1).get(Key) - curState.get(Key));
 			return lerpData;
 		}
             return curState.get(Key);
