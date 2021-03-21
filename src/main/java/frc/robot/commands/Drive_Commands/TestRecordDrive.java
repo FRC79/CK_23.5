@@ -32,6 +32,7 @@ public class TestRecordDrive extends CommandBase {
   public void initialize() {
     m_stick = m_RobotContainer.driver;
     m_Recorder.startRecording();
+    m_DriveTrain.resetEncoders();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -46,6 +47,8 @@ public class TestRecordDrive extends CommandBase {
 
     m_Recorder.setRobotData("joyX",  m_stick.getX());
     m_Recorder.setRobotData("joyY", m_stick.getY());
+    m_Recorder.setRobotData("leftEncoderDist", m_DriveTrain.leftEncoderDistance());
+    m_Recorder.setRobotData("leftEncoderDist", m_DriveTrain.rightEncoderDistance());
   }
 
   // Called once the command ends or is interrupted.
