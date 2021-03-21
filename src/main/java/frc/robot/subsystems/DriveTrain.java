@@ -60,6 +60,26 @@ public class DriveTrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
   public DriveTrain() {}
 
+  // set the distance of the encoders to 0
+  public void resetEncoders() {
+    rightEncoder.reset();
+    leftEncoder.reset();
+  }
+
+  // get distance and velocity from the encoders
+  public Double rightEncoderDistance() {
+    return rightEncoder.getDistance();
+  }
+  public Double leftEncoderDistance() {
+    return leftEncoder.getDistance();
+  }
+  public Double rightEncoderVelocity() {
+    return rightEncoder.getRate();
+  }
+  public Double leftEncoderVelocity() {
+    return leftEncoder.getRate();
+  }
+
   // sets motors based on forward and turn inputs 
   public void arcadeDrive(double fwd, double rot) {
 
