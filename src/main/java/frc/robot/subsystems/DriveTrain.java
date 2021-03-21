@@ -63,7 +63,7 @@ public class DriveTrain extends SubsystemBase {
   // sets motors based on forward and turn inputs 
   public void arcadeDrive(double fwd, double rot) {
 
-    /* eliminate imperfection in restin position of joystick */
+    /* eliminate imperfection in resting position of joystick */
 		double forward = Deadband(fwd);
     double turn = Deadband(rot);
 
@@ -73,6 +73,21 @@ public class DriveTrain extends SubsystemBase {
     
     frontRightMotor.set(ControlMode.PercentOutput, -forward, DemandType.ArbitraryFeedForward, turn);
     backRightMotor.set(ControlMode.PercentOutput, forward, DemandType.ArbitraryFeedForward, -turn);
+  }
+
+  // sets motors based on throttle per side of drive train
+  public void tankDrive(double left, double right) {
+
+    /* eliminate imperfection in resting position of joystick */
+    double leftThrottle = Deadband(left);
+    double rightThrottle = Deadband(right);
+
+    /* Arcade Drive using PercentOutput along with Arbitrary Feed Forward supplied by turn */
+    frontLeftMotor.set(ControlMode.PercentOutput, -leftThrottle);
+    backLeftMotor.set(ControlMode.PercentOutput, leftThrottle);
+    
+    frontRightMotor.set(ControlMode.PercentOutput, -rightThrottle);
+    backRightMotor.set(ControlMode.PercentOutput, rightThrottle);
   }
 
   // eliminates small inperfections in the driveStick's resting position
