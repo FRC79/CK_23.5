@@ -66,9 +66,15 @@ public class PlaybackAuton extends CommandBase {
     double leftDeriv = (m_DriveTrain.leftEncoderVelocity())*derivativeWeight;
     double rightDeriv = (m_DriveTrain.rightEncoderVelocity())*derivativeWeight;
 
+    /*
     // convert arcade to left and right and add then correction throttle
     double left  = (joyY + joyX) + (leftProp - leftDeriv)*PIDWeight;
     double right = (joyY - joyX) + (rightProp - rightDeriv)*PIDWeight;	
+    */
+
+    // make left and right simply the PID correction to try and get the drive train to the correct distances
+    double left = (leftProp - leftDeriv)*PIDWeight;
+    double right = (rightProp - rightDeriv)*PIDWeight;
     // drive train 
     m_DriveTrain.tankDrive(left, right);
   }
