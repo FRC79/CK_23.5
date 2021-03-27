@@ -27,29 +27,39 @@ public final class Constants {
     public static final boolean INTERPOLATE_VALUES    = true;   // should data retreived between updates be interpolated (a method of constructing new data points between two given data points)
   }
   
-    public static final class DriveConstants {
+  public static final class DriveConstants {
 
-        /* motors */
-        public static final int LEFT_MOTOR1_PORT    = 1;
-        public static final int LEFT_MOTOR2_PORT    = 7;
-        
-        public static final int RIGHT_MOTOR1_PORT   = 13;
-        public static final int RIGHT_MOTOR2_PORT   = 8; 
+      /* motors */
+      public static final int LEFT_MOTOR1_PORT    = 1;
+      public static final int LEFT_MOTOR2_PORT    = 7;
+      
+      public static final int RIGHT_MOTOR1_PORT   = 13;
+      public static final int RIGHT_MOTOR2_PORT   = 8; 
 
-        /* encoders */
-        public static final int RIGHT_ENCODER_PORT_A        = 0;     // port for the A channel of right encoder
-        public static final int RIGHT_ENCODER_PORT_B        = 1;     // port for the B channel of right encoder
-        public static final boolean RIGHT_ENCODER_REVERSE   = true;  // is the right encoder reversed?
+      /* encoders */
+      public static final int RIGHT_ENCODER_PORT_A        = 0;     // port for the A channel of right encoder
+      public static final int RIGHT_ENCODER_PORT_B        = 1;     // port for the B channel of right encoder
+      public static final boolean RIGHT_ENCODER_REVERSE   = true;  // is the right encoder reversed?
 
-        public static final int LEFT_ENCODER_PORT_A         = 2;     // port for the A channel of left encoder
-        public static final int LEFT_ENCODER_PORT_B         = 3;     // port for the B channel of leff encoder
-        public static final boolean LEFT_ENCODER_REVERSE    = false; // is the left encoder reversed?
-    }    
+      public static final int LEFT_ENCODER_PORT_A         = 2;     // port for the A channel of left encoder
+      public static final int LEFT_ENCODER_PORT_B         = 3;     // port for the B channel of leff encoder
+      public static final boolean LEFT_ENCODER_REVERSE    = false; // is the left encoder reversed?
+  }    
+
+  public static final class RollerConstants {
+    /* roller vicors */
+    public static final int INTAKE    = 6;
+    public static final int CLIP_LOW  = 9;
+    public static final int CLIP_HIGH = 12;
+    public static final int DUMPER    = 11;
+  }
 
 
-    public static final class OIConstants {
-      /* joysticks */
-      public static final int DRIVER    = 0; // driver joystick port (usb) on laptop (changeable w/ oi in driver station)
-      public static final int OPERATOR  = 1; // driver joystick port (usb) on laptop (changeable w/ oi in driver station)
-    }
+  public static final class OIConstants {
+    /* joysticks */
+    public static final int DRIVER    = 0; // driver joystick port (usb) on laptop (changeable w/ oi in driver station)
+    public static final int OPERATOR  = 1; // driver joystick port (usb) on laptop (changeable w/ oi in driver station)
+  
+    /* Controller Buttons */
+  }
 }
