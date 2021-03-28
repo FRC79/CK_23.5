@@ -44,6 +44,12 @@ public class DriveTrain extends SubsystemBase {
   /* gyro */
   private final AHRS gyro = new AHRS(SPI.Port.kMXP); ;
 
+  /* encoder constants */
+  private final int diameter = 6; // inches
+  private final int cpr = 5; // counts per rotation
+  private final int gearRatio = 1; // gear ratio ( from driven wheel to input gear )
+
+
   /* dashboard for debug values */
   private SmartDashboard m_dash;
 
@@ -58,7 +64,10 @@ public class DriveTrain extends SubsystemBase {
   double heading;
 
   /** Creates a new Drivetrain. */
-  public DriveTrain() {}
+  public DriveTrain() {
+    rightEncoder.setDistancePerPulse(Math.PI*diameter*cpr*gearRatio);
+    leftEncoder.setDistancePerPulse(Math.PI*diameter*cpr*gearRatio);
+  }
 
   // set the distance of the encoders to 0
   public void resetEncoders() {
