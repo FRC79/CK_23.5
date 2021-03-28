@@ -38,16 +38,15 @@ public class DriveTrain extends SubsystemBase {
   private final VictorSPX backRightMotor = new VictorSPX(DriveConstants.RIGHT_MOTOR2_PORT);
 
   /* encoders */
-  private final Encoder rightEncoder = new Encoder(DriveConstants.LEFT_ENCODER_PORT_A,DriveConstants.LEFT_ENCODER_PORT_B,DriveConstants.LEFT_ENCODER_REVERSE);
-  private final Encoder leftEncoder  = new Encoder(DriveConstants.RIGHT_ENCODER_PORT_A,DriveConstants.RIGHT_ENCODER_PORT_B,DriveConstants.RIGHT_ENCODER_REVERSE);
+  private final Encoder leftEncoder = new Encoder(DriveConstants.LEFT_ENCODER_PORT_A,DriveConstants.LEFT_ENCODER_PORT_B,DriveConstants.LEFT_ENCODER_REVERSE);
+  private final Encoder rightEncoder  = new Encoder(DriveConstants.RIGHT_ENCODER_PORT_A,DriveConstants.RIGHT_ENCODER_PORT_B,DriveConstants.RIGHT_ENCODER_REVERSE);
 
   /* gyro */
   private final AHRS gyro = new AHRS(SPI.Port.kMXP); ;
 
   /* encoder constants */
-  private final int diameter = 6; // inches
-  private final int cpr = 5; // counts per rotation
-  private final int gearRatio = 1; // gear ratio ( from driven wheel to input gear )
+  private final double diameter = 6; // inches
+  private final double cpr = 649.21875; // counts per rotation (gear rotation included)
 
 
   /* dashboard for debug values */
@@ -65,8 +64,8 @@ public class DriveTrain extends SubsystemBase {
 
   /** Creates a new Drivetrain. */
   public DriveTrain() {
-    rightEncoder.setDistancePerPulse(Math.PI*diameter*cpr*gearRatio);
-    leftEncoder.setDistancePerPulse(Math.PI*diameter*cpr*gearRatio);
+    rightEncoder.setDistancePerPulse((18d/4.808701d)*Math.PI*diameter/cpr);
+    leftEncoder.setDistancePerPulse((18d/4.808701d)*Math.PI*diameter/cpr);
   }
 
   // gyro reset
@@ -141,11 +140,11 @@ public class DriveTrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    vel1 = rightEncoder.getRate();
-    vel2 = leftEncoder.getRate();
+    vel1 = rightEncoder.getDistance();
+    vel2 = leftEncoder.getDistance();
 
-    m_dash.putNumber("Encoder1", vel1);
-    m_dash.putNumber("Encoder2", vel2);
+    m_dash.putNumber("right Encoder", vel1);
+    m_dash.putNumber("left Encoder", vel2);
 
     angle = gyro.getAngle();
     altitude = gyro.getAltitude();
