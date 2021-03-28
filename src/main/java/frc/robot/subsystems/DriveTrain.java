@@ -38,8 +38,8 @@ public class DriveTrain extends SubsystemBase {
   private final VictorSPX backRightMotor = new VictorSPX(DriveConstants.RIGHT_MOTOR2_PORT);
 
   /* encoders */
-  private final Encoder rightEncoder = new Encoder(DriveConstants.LEFT_ENCODER_PORT_A,DriveConstants.LEFT_ENCODER_PORT_B,DriveConstants.LEFT_ENCODER_REVERSE);
-  private final Encoder leftEncoder  = new Encoder(DriveConstants.RIGHT_ENCODER_PORT_A,DriveConstants.RIGHT_ENCODER_PORT_B,DriveConstants.RIGHT_ENCODER_REVERSE);
+  private final Encoder leftEncoder = new Encoder(DriveConstants.LEFT_ENCODER_PORT_A,DriveConstants.LEFT_ENCODER_PORT_B,DriveConstants.LEFT_ENCODER_REVERSE);
+  private final Encoder rightEncoder  = new Encoder(DriveConstants.RIGHT_ENCODER_PORT_A,DriveConstants.RIGHT_ENCODER_PORT_B,DriveConstants.RIGHT_ENCODER_REVERSE);
 
   /* gyro */
   private final AHRS gyro = new AHRS(SPI.Port.kMXP); ;
@@ -67,11 +67,11 @@ public class DriveTrain extends SubsystemBase {
   }
 
   // get distance and velocity from the encoders
-  public Double rightEncoderDistance() {
-    return rightEncoder.getDistance();
+  public int rightEncoderDistance() {
+    return rightEncoder.getRaw();
   }
-  public Double leftEncoderDistance() {
-    return leftEncoder.getDistance();
+  public int leftEncoderDistance() {
+    return leftEncoder.getRaw();
   }
   public Double rightEncoderVelocity() {
     return rightEncoder.getRate();
@@ -127,11 +127,11 @@ public class DriveTrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    vel1 = rightEncoder.getRate();
-    vel2 = leftEncoder.getRate();
+    vel1 = rightEncoder.getRaw();
+    vel2 = leftEncoder.getRaw();
 
-    m_dash.putNumber("Encoder1", vel1);
-    m_dash.putNumber("Encoder2", vel2);
+    m_dash.putNumber("right Encoder", vel1);
+    m_dash.putNumber("left Encoder", vel2);
 
     angle = gyro.getAngle();
     altitude = gyro.getAltitude();
