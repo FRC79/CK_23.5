@@ -69,6 +69,11 @@ public class DriveTrain extends SubsystemBase {
     leftEncoder.setDistancePerPulse(Math.PI*diameter*cpr*gearRatio);
   }
 
+  // gyro reset
+  public void resetGyro() {
+    gyro.reset();
+  }
+
   // set the distance of the encoders to 0
   public void resetEncoders() {
     rightEncoder.reset();
