@@ -4,23 +4,22 @@
 
 package frc.robot.commands.Drive_Commands.BrainDeadAuton;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.DriveTrain;
 
-public class Wait extends CommandBase {
-  private Timer timer;
-  private double time;
-  /** Creates a new Wait. */
-  public Wait(double time) {
-    this.time = time;
+public class resetEncoders extends CommandBase {
+  private DriveTrain _DriveTrain;
+  /** Creates a new resetEncoders. */
+  public resetEncoders(DriveTrain driveTrain) {
     // Use addRequirements() here to declare subsystem dependencies.
+    _DriveTrain = driveTrain;
+    addRequirements(_DriveTrain);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    this.timer = new Timer();
-    this.timer.start();
+    _DriveTrain.resetEncoders();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -34,6 +33,6 @@ public class Wait extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return this.timer.hasElapsed(this.time);
+    return true;
   }
 }
