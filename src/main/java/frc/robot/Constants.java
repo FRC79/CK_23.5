@@ -41,14 +41,14 @@ public final class Constants {
         public static final int RIGHT_ENCODER_PORT_B        = 1;     // port for the B channel of right encoder
         public static final boolean RIGHT_ENCODER_REVERSE   = true;  // is the right encoder reversed?
 
-        public static final int LEFT_ENCODER_PORT_A         = 2;     // port for the A channel of left encoder
-        public static final int LEFT_ENCODER_PORT_B         = 3;     // port for the B channel of leff encoder
+        public static final int LEFT_ENCODER_PORT_A         = 3;     // port for the A channel of left encoder
+        public static final int LEFT_ENCODER_PORT_B         = 4;     // port for the B channel of leff encoder
         public static final boolean LEFT_ENCODER_REVERSE    = false; // is the left encoder reversed?
 
         /* PID loop weights */
-        public static final double PID_WEIGHT         = 1;  // how much should the pid correction affect the throttle
-        public static final double PROPORTION_WEIGHT  = 1;  // how much should the proportion affect the PID
-        public static final double DERIVATIVE_WEIGHT  = 1;  // how much should the derivative affect the PID
+        public static final double PID_WEIGHT         = 0.03;  // how much should the pid correction affect the throttle
+        public static final double PROPORTION_WEIGHT  = 0.5;  // how much should the proportion affect the PID
+        public static final double DERIVATIVE_WEIGHT  = 0.0;  // how much should the derivative affect the PID
     }    
 
 
