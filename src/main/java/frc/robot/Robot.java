@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.commands.Drive_Commands.*;
+import frc.robot.commands.Drive_Commands.BrainDeadAuton.*;
 
 
 
@@ -79,8 +80,8 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    m_PlaybackAuton = new PlaybackAuton(m_Recorder, m_DriveTrain);
-    m_autonomousCommand = m_PlaybackAuton;
+    //m_PlaybackAuton = new PlaybackAuton(m_Recorder, m_DriveTrain);
+    m_autonomousCommand = new Track_A_Sequence(m_DriveTrain);
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {

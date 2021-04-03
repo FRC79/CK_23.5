@@ -66,11 +66,21 @@ public class DriveTrain extends SubsystemBase {
   public DriveTrain() {
     rightEncoder.setDistancePerPulse((18d/4.808701d)*Math.PI*diameter/cpr);
     leftEncoder.setDistancePerPulse((18d/4.808701d)*Math.PI*diameter/cpr);
+    resetGyro();
   }
 
   // gyro reset
   public void resetGyro() {
     gyro.reset();
+  }
+
+  public double gyroRate() {
+    return gyro.getRate();
+  }
+
+  // gyro get
+  public double getHeading(){
+    return gyro.getAngle();
   }
 
   // set the distance of the encoders to 0
@@ -146,13 +156,7 @@ public class DriveTrain extends SubsystemBase {
     m_dash.putNumber("right Encoder", vel1);
     m_dash.putNumber("left Encoder", vel2);
 
-    angle = gyro.getAngle();
-    altitude = gyro.getAltitude();
-    heading = gyro.getCompassHeading();
-
-    m_dash.putNumber("Angle", angle);
-    m_dash.putNumber("Altitude", altitude);
-    m_dash.putNumber("Altitude", heading);
+    m_dash.putNumber("angle", gyro.getAngle());
 
   }
 }
