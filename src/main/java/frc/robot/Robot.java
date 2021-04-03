@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Rollers;
 import frc.robot.commands.Drive_Commands.*;
 
 
@@ -25,6 +26,9 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
 
   private RobotRecorder m_Recorder;
+
+  /* rollers */
+  private Rollers _Rollers;
 
   /* drive train */
   private DriveTrain m_DriveTrain;
@@ -48,8 +52,9 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_Recorder = new RobotRecorder();
     m_DriveTrain = new DriveTrain();
+    _Rollers = new Rollers();
 
-    m_robotContainer = new RobotContainer();
+    m_robotContainer = new RobotContainer(_Rollers);
 
   }
 

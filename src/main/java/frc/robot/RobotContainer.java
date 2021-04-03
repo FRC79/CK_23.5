@@ -6,9 +6,11 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
-//import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.Constants.OIConstants;
 import edu.wpi.first.wpilibj.XboxController;
-//import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.Roller_Commands.*;
+import frc.robot.subsystems.Rollers;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -19,7 +21,7 @@ import edu.wpi.first.wpilibj.XboxController;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   /* Subsystems */
-  
+  private Rollers _Rollers;
   /* commands */
 
   /* joysticks */
@@ -27,7 +29,8 @@ public class RobotContainer {
   public GenericHID operator = new Joystick(Constants.OIConstants.OPERATOR);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
-  public RobotContainer() {
+  public RobotContainer(Rollers rollers) {
+    _Rollers = rollers;
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -39,6 +42,13 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings(){
+    new JoystickButton(driver, OIConstants.INTAKE_BUTTON).whenPressed(new Intake(_Rollers));
+
+    new JoystickButton(driver, OIConstants.INTAKE_BUTTON).whenPressed(new Dump(_Rollers));
+
+    new JoystickButton(driver, OIConstants.INTAKE_BUTTON).whenReleased(new Stop(_Rollers));
+
+    new JoystickButton(driver, OIConstants.INTAKE_BUTTON).whenReleased(new Stop(_Rollers));
 
   }
 
