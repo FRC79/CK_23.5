@@ -57,4 +57,8 @@ public final class Constants {
       public static final int DRIVER    = 0; // driver joystick port (usb) on laptop (changeable w/ oi in driver station)
       public static final int OPERATOR  = 1; // driver joystick port (usb) on laptop (changeable w/ oi in driver station)
     }
+
+    public static final class RollerConstants {
+      public static final double ROLLER_SPEED = 0.8;
+    }
 }
