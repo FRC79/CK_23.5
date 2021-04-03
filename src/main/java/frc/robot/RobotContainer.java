@@ -21,7 +21,7 @@ import frc.robot.subsystems.Rollers;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   /* Subsystems */
-  private Rollers _Rollers;
+  private Rollers _Rollers = new Rollers();
   /* commands */
 
   /* joysticks */
@@ -29,8 +29,7 @@ public class RobotContainer {
   public GenericHID operator = new Joystick(Constants.OIConstants.OPERATOR);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
-  public RobotContainer(Rollers rollers) {
-    _Rollers = rollers;
+  public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
   }
