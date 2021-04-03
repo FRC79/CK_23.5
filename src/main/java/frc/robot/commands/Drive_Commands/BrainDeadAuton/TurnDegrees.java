@@ -10,6 +10,8 @@ import frc.robot.subsystems.DriveTrain;
 public class TurnDegrees extends CommandBase {
   private DriveTrain _DriveTrain;
   private double degrees;
+  private int turns;
+  private int lastTurn;
 
   /** Creates a new TurnDegrees. */
   public TurnDegrees(DriveTrain driveTrain, double degrees) {
@@ -23,6 +25,8 @@ public class TurnDegrees extends CommandBase {
   @Override
   public void initialize() {
     _DriveTrain.resetGyro();
+    lastTurn = 0;
+    turns = 0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -30,13 +34,21 @@ public class TurnDegrees extends CommandBase {
   public void execute() {
     double fraction = this.degrees - _DriveTrain.getHeading();
     
-    double turn = Math.signum(fraction);
+    int turn = (int) Math.signum(fraction);
 
     System.out.println(_DriveTrain.getHeading());
     double throttle = 0.3;
 
     if(Math.abs(fraction) < 10){
-      throttle = 0.20;
+      throttle = 0.25;
+    }
+    if(lastTurn != turn){
+      turns++;
+    }
+    lastTurn = turn;
+
+    if(turns > 3){
+      throttle = 0.15;
     }
     
     _DriveTrain.arcadeDrive(0, turn*throttle);

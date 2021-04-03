@@ -20,54 +20,56 @@ public class Track_C_Sequence extends SequentialCommandGroup {
     addCommands(
       // exit start zone
       new DriveDistance(_DriveTrain,48),
-      new Wait(0.3),
+      new Wait(0),
       // turn left 90
       new TurnDegrees(_DriveTrain,-90),
-      new Wait(0.3),
+      new Wait(0),
       // go to A3
       new DriveDistance(_DriveTrain,60),
-      new Wait(0.3),
+      new Wait(0),
       // turn left ~15 degrees in preperation of going backwards
       new TurnDegrees(_DriveTrain,-15),
-      new Wait(0.3),
+      new Wait(0),
       // back up to right side of the field
-      new DriveDistance(_DriveTrain,132),
-      new Wait(0.3),
+      new DriveDistance(_DriveTrain,-122),
+      new Wait(0),
       // turn left ~75 degrees to back up again
-      new TurnDegrees(_DriveTrain,-75),
-      new Wait(0.3),
+      new TurnDegrees(_DriveTrain,-75+2),
+      new Wait(0),
       // back up to align with A6
-      new DriveDistance(_DriveTrain,60),
-      new Wait(0.3),
+      new DriveDistance(_DriveTrain,-50+2),
+      new Wait(0),
       // turn right 90 to face A6
       new TurnDegrees(_DriveTrain,90),
-      new Wait(0.3),
+      new Wait(0),
       // drive to A6
       new DriveDistance(_DriveTrain,120),
-      new Wait(0.3),
+      new Wait(0),
       // back up to the right side of the field
-      new DriveDistance(_DriveTrain,-120+2),
-      new Wait(0.3),
+      new DriveDistance(_DriveTrain,-110+2),
+      new Wait(0),
       // turn right 90
       new TurnDegrees(_DriveTrain,90),
-      new Wait(0.3),
+      new Wait(0),
       // drive to align with A9
       new DriveDistance(_DriveTrain,90),
-      new Wait(0.3),
+      new Wait(0),
       // turn left 90 to face A9
       new TurnDegrees(_DriveTrain,-90),
-      new Wait(0.3),
+      new Wait(0),
       // go to A3
       new DriveDistance(_DriveTrain,120),
-      new Wait(0.3),
+      new Wait(0),
+      new TurnDegrees(_DriveTrain,-15),
+      new Wait(0),
       // back up to align with finish zone
-      new DriveDistance(_DriveTrain,-60+2),
-      new Wait(0.3),
+      new DriveDistance(_DriveTrain,-50+2),
+      new Wait(0)/*
       // turn right 90 to face finish zone
       new TurnDegrees(_DriveTrain,90),
-      new Wait(0.3),
+      new Wait(0),
       // enter finish zone
-      new DriveDistance(_DriveTrain,60)
+      new DriveDistance(_DriveTrain,60)*/
     );
   }
 }

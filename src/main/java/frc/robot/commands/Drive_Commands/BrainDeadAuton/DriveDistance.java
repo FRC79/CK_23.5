@@ -30,11 +30,12 @@ public class DriveDistance extends CommandBase {
   @Override
   public void execute() {
 
-    double leftThrottle = 1;
-    double rightThrottle = 1;
-
     double leftDistance = this.distance - _DriveTrain.leftEncoderDistance();
     double rightDistance = this.distance - _DriveTrain.rightEncoderDistance();
+
+    double leftThrottle = Math.signum(leftDistance);
+    double rightThrottle = Math.signum(rightDistance);
+
 /*
     if(leftDistance < 24 && leftDistance > 10 ){
       leftThrottle = ((leftDistance-10)+1)/15;
@@ -44,22 +45,22 @@ public class DriveDistance extends CommandBase {
       rightThrottle = ((rightDistance-10)+1)/15;
     }*/
 
-    if(leftDistance < 36){
-      leftThrottle = 0.35;
+    if(Math.abs(leftDistance) < 36){
+      leftThrottle *= 0.35;
     }
-    if(rightDistance < 36){
-      rightThrottle = 0.35;
+    if(Math.abs(rightDistance) < 36){
+      rightThrottle *= 0.35;
     }
 
-    if(_DriveTrain.leftEncoderDistance() > this.distance){
+    if(Math.abs(_DriveTrain.leftEncoderDistance()) > Math.abs(this.distance)){
       leftThrottle = 0;
     }
-    if(_DriveTrain.rightEncoderDistance() > this.distance){
+    if(Math.abs(_DriveTrain.rightEncoderDistance()) > Math.abs(this.distance)){
       rightThrottle = 0;
     }
     _DriveTrain.tankDrive(0.5*leftThrottle, 0.5*rightThrottle);
 
-    System.out.println(_DriveTrain.leftEncoderDistance());
+    System.out.println(Math.abs(this.distance));
   }
 
   // Called once the command ends or is interrupted.
@@ -71,6 +72,6 @@ public class DriveDistance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (Math.abs(_DriveTrain.leftEncoderDistance()) > this.distance)&&(Math.abs(_DriveTrain.rightEncoderDistance()) > this.distance);
+    return (Math.abs(_DriveTrain.leftEncoderDistance()) > Math.abs(this.distance))&&(Math.abs(_DriveTrain.rightEncoderDistance()) > Math.abs(this.distance));
   }
 }
