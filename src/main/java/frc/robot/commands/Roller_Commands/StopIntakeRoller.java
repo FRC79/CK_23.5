@@ -2,37 +2,43 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.Drive_Commands.BrainDeadAuton;
+package frc.robot.commands.Roller_Commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DriveTrain;
- 
-public class ResetEncoders extends CommandBase {
-  private DriveTrain _DriveTrain;
-  /** Creates a new resetEncoders. */
-  public ResetEncoders(DriveTrain driveTrain) {
+
+import frc.robot.subsystems.Rollers;
+
+import frc.robot.Constants.RollerConstants;
+
+public class StopIntakeRoller extends CommandBase {
+  // reference of Roller
+  private Rollers m_Roller;
+
+  /** Creates a new OutputRoller. */
+  public StopIntakeRoller() {
     // Use addRequirements() here to declare subsystem dependencies.
-    _DriveTrain = driveTrain;
-    addRequirements(_DriveTrain);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    _DriveTrain.resetEncoders();
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    //Set roller speed ot value in constants
+    m_Roller.setIntakeSpeed(0);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    m_Roller.setIntakeSpeed(0);
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }
