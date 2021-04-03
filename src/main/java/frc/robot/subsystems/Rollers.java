@@ -14,10 +14,10 @@ import frc.robot.Constants.RollerConstants;
 public class Rollers extends SubsystemBase {
 
   // Roller Motors
-  private final TalonSRX inMotor = new TalonSRX(RollerConstants.IN_ROLLER_PORT);
-  private final TalonSRX clipMotor1 = new TalonSRX(RollerConstants.CLIP_ROLLER1_PORT);
-  private final TalonSRX clipMotor2 = new TalonSRX(RollerConstants.CLIP_ROLLER2_PORT);
-  private final TalonSRX outMotor = new TalonSRX(RollerConstants.OUT_ROLLER_PORT);
+  private final TalonSRX inMotor = new TalonSRX(RollerConstants.INTAKE_PORT);
+  private final TalonSRX clipMotor1 = new TalonSRX(RollerConstants.CLIP_LOWER_PORT);
+  private final TalonSRX clipMotor2 = new TalonSRX(RollerConstants.CLIP_UPPER_PORT);
+  private final TalonSRX outMotor = new TalonSRX(RollerConstants.DUMP_PORT);
 
   /** Creates a new Roller. */
   public Rollers() {}
