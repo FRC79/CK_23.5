@@ -9,7 +9,7 @@ import frc.robot.subsystems.DriveTrain;
  
 public class ResetEncoders extends CommandBase {
   private DriveTrain _DriveTrain;
-  /** Creates a new resetEncoders. */
+  /** Creates a new resetEncoders. */ 
   public ResetEncoders(DriveTrain driveTrain) {
     // Use addRequirements() here to declare subsystem dependencies.
     _DriveTrain = driveTrain;
