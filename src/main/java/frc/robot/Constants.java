@@ -61,7 +61,7 @@ public final class Constants {
     public static final int OPERATOR  = 1; // driver joystick port (usb) on laptop (changeable w/ oi in driver station)
   
     /* Controller Buttons */
-    public static final int INTAKE_BUTTON = 3;
-    public static final int DUMP_BUTTON = 4;
+    public static final int INTAKE_BUTTON = 6;
+    public static final int DUMP_BUTTON = 7;
   }
 }
