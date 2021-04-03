@@ -42,13 +42,13 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings(){
-    new JoystickButton(driver, OIConstants.INTAKE_BUTTON).whenPressed(new Intake(_Rollers));
+    new JoystickButton(operator, OIConstants.INTAKE_BUTTON).whenPressed(new Intake(_Rollers));
 
-    new JoystickButton(driver, OIConstants.INTAKE_BUTTON).whenPressed(new Dump(_Rollers));
+    new JoystickButton(operator, OIConstants.DUMP_BUTTON).whenPressed(new Dump(_Rollers));
 
-    new JoystickButton(driver, OIConstants.INTAKE_BUTTON).whenReleased(new Stop(_Rollers));
+    new JoystickButton(operator, OIConstants.INTAKE_BUTTON).whenReleased(new Stop(_Rollers));
 
-    new JoystickButton(driver, OIConstants.INTAKE_BUTTON).whenReleased(new Stop(_Rollers));
+    new JoystickButton(operator, OIConstants.DUMP_BUTTON).whenReleased(new Stop(_Rollers));
 
   }
 
