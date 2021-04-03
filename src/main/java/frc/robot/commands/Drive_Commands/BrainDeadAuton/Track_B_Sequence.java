@@ -20,51 +20,51 @@ public class Track_B_Sequence extends SequentialCommandGroup {
     addCommands(
       /* initial S shape from right to left (first two turns) */
       // get to first turn
-      new DriveDistance(_DriveTrain,36),
+      new DriveDistance(_DriveTrain,24),
       new Wait(0.3),
       // turn left 45
       new TurnDegrees(_DriveTrain,-45),
       new Wait(0.3),
       // drive to second turn 
-      new DriveDistance(_DriveTrain,102),
+      new DriveDistance(_DriveTrain,84),
       new Wait(0.3),
       // turn right 45
       new TurnDegrees(_DriveTrain,45),
       new Wait(0.3),
       /* drive to end of field */
       //drive to third turn
-      new DriveDistance(_DriveTrain,90),
-      new Wait(0.3),
-      /* Enter the circle at the end of the field */
-      // turn right 45
-      new TurnDegrees(_DriveTrain,45),
-      new Wait(0.3),
-      // drive to fourth turn
       new DriveDistance(_DriveTrain,102),
       new Wait(0.3),
+      /* Enter the circle at the end of the field */
+      // turn right 60
+      new TurnDegrees(_DriveTrain,60),
+      new Wait(0.3),
+      // drive to fourth turn
+      new DriveDistance(_DriveTrain,110),
+      new Wait(0.3),
       // turn left 90
       new TurnDegrees(_DriveTrain,-90),
       new Wait(0.3),
       // drive past D10
-      new DriveDistance(_DriveTrain,50),
+      new DriveDistance(_DriveTrain,60),
       new Wait(0.3),
       // turn left 90
       new TurnDegrees(_DriveTrain,-90),
       new Wait(0.3),
       // drive past D10
-      new DriveDistance(_DriveTrain,50),
+      new DriveDistance(_DriveTrain,52),
       new Wait(0.3),
       // turn left 90
       new TurnDegrees(_DriveTrain,-90),
       new Wait(0.3),
       // drive to right side of field
-      new DriveDistance(_DriveTrain,102),
+      new DriveDistance(_DriveTrain,94),
       new Wait(0.3),
-      // turn right 45
-      new TurnDegrees(_DriveTrain,45),
+      // turn right 55
+      new TurnDegrees(_DriveTrain,54),
       new Wait(0.3),
       // drive to beginin of field
-      new DriveDistance(_DriveTrain,90),
+      new DriveDistance(_DriveTrain,118),
       new Wait(0.3),
       // turn right 45
       new TurnDegrees(_DriveTrain,45),
