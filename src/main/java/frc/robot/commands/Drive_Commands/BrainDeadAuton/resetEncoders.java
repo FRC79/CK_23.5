@@ -6,12 +6,14 @@ package frc.robot.commands.Drive_Commands.BrainDeadAuton;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
- 
-public class ResetEncoders extends CommandBase {
+
+public class resetEncoders extends CommandBase {
+
   private DriveTrain _DriveTrain;
+  
   /** Creates a new resetEncoders. */ 
   public ResetEncoders(DriveTrain driveTrain) {
-    // Use addRequirements() here to declare subsystem dependencies.
+
     _DriveTrain = driveTrain;
     addRequirements(_DriveTrain);
   }
